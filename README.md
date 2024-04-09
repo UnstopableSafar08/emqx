@@ -7,5 +7,39 @@ EMQX is currently the most scalable MQTT broker for IoT applications. It process
 ## Architecture
 ![emqx-arch](https://github.com/UnstopableSafar08/emqx/blob/main/Assets/architecture_image.f5sZc1A2.png)
 
-## Test Architecture
+## Test Cluster overview
 ![testArch](https://github.com/UnstopableSafar08/emqx/blob/main/Assets/local-cluster-overview.png)
+
+## EMQX - Installation
+```sh 
+curl -s https://assets.emqx.com/scripts/install-emqx-rpm.sh | sudo bash
+yum install epel-release -y ;
+yum install -y openssl11 openssl11-devel ;
+sudo yum install emqx -y;
+
+# Start and Status Check
+sudo systemctl start emqx
+systemctl status emqx
+
+#Port Check (18083, 8083, 1883, 8081, 8883, 8084, 4370, 5370)
+ss -ltn 
+netstat -tupln | grep emqx
+
+# Reload Daemon and restart emqx after config change
+systemctl daemon-reload
+systemctl restart emqx
+
+# Admin/Users password reset (not for first-time setup)
+emqx ctl admins passwd <Username> <NewPassword>
+e.g.: emqx ctl admins passwd admin NewPassword#1234
+```
+***
+## EMQX - Login Dashboard
+Web Dashboard: http://IP:18083/ <br>
+`sh In my Case  : http://192.168.121.141:18083` <br>
+Default-login: <br>
+    Default-username: admin <br>
+    Default-password: public <br>
+### Login page
+![login-dashboard](https://github.com/UnstopableSafar08/emqx/blob/main/Assets/1-login.png)
+***
