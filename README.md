@@ -43,3 +43,22 @@ Default-login: <br>
 ### Login page
 ![login-dashboard](https://github.com/UnstopableSafar08/emqx/blob/main/Assets/1-login.png)
 ***
+## EMQX - Dashboard
+![main-dashboard](https://github.com/UnstopableSafar08/emqx/blob/main/Assets/3-dashboard.png)
+***
+## EMQX - Uninstall/Remove
+```sh
+# ----------------- Complete Uninstall ------------
+sudo yum remove emqx -y
+sudo rm -rf /etc/emqx 
+sudo rm -rf /var/lib/emqx 
+sudo rm -rf /var/log/emqx
+
+# ----------------- Service Delete ------------
+sudo rm /etc/systemd/system/emqx.service
+sudo systemctl daemon-reload
+
+# ----------------- User and Group Delete ------------
+sudo userdel emqx
+sudo groupdel emqx
+```
