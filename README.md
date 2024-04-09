@@ -1,5 +1,4 @@
-# emqx
-Message Queue
+# EMQX
 
 EMQX is a cloud-native, MQTT-based, IoT messaging platform designed for high reliability and massive scale. EMQX is a tool in the Message Queue category of a tech stack. 
 EMQX is currently the most scalable MQTT broker for IoT applications. It processes millions of MQTT messages in a second with sub-millisecond latency and allows messaging among more than 100 million clients within a single cluster. EMQX is compliant with MQTT 5.0 and 3.x. It’s ideal for distributed IoT networks and can run on the cloud, Microsoft Azure, Amazon Web Services, and Google Cloud. The broker can implement MQTT over TLS/SSL and supports several authentication mechanisms like PSK, JWT, and X.509. Unlike Mosquitto, EMQX supports clustering via CLI, HTTP API, and a Dashboard.
@@ -46,6 +45,65 @@ Default-login: <br>
 ## EMQX - Dashboard
 ![main-dashboard](https://github.com/UnstopableSafar08/emqx/blob/main/Assets/3-dashboard.png)
 ***
+## EMQX - Performence Tunning
+```sh
+# ------------------------------ Performance tunning (All Node)---------------------------
+sysctl -w fs.file-max=2097152
+sysctl -w fs.nr_open=2097152
+echo 2097152 > /proc/sys/fs/nr_open
+ulimit -n 2097152
+
+echo "fs.file-max = 2097152">>/etc/sysctl.conf
+echo "fs.file-max = 2097152">>/etc/sysctl.conf
+echo "DefaultLimitNOFILE=2097152">>/etc/systemd/system.conf
+
+vi /usr/lib/systemd/system/emqx.service
+LimitNOFILE=2097152
+
+echo -e "*      soft   nofile      2097152
+*      hard   nofile      2097152">>/etc/security/limits.conf
+
+systemctl restart emqx
+systemctl daemon-reload
+
+### ------------- Network -----------------------------------------
+sysctl -w net.core.somaxconn=32768
+sysctl -w net.ipv4.tcp_max_syn_backlog=16384
+sysctl -w net.core.netdev_max_backlog=16384
+sysctl -w net.ipv4.ip_local_port_range='1024 65535'
+sysctl -w net.core.rmem_default=262144
+sysctl -w net.core.wmem_default=262144
+sysctl -w net.core.rmem_max=16777216
+sysctl -w net.core.wmem_max=16777216
+sysctl -w net.core.optmem_max=16777216
+#sysctl -w net.ipv4.tcp_mem='16777216 16777216 16777216'
+sysctl -w net.ipv4.tcp_rmem='1024 4096 16777216'
+sysctl -w net.ipv4.tcp_wmem='1024 4096 16777216'
+sysctl -w net.nf_conntrack_max=1000000
+sysctl -w net.netfilter.nf_conntrack_max=1000000
+sysctl -w net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
+sysctl -w net.ipv4.tcp_max_tw_buckets=1048576
+
+# Enabling following option is not recommended. It could cause connection reset under NAT
+# sysctl -w net.ipv4.tcp_tw_recycle=1
+# sysctl -w net.ipv4.tcp_tw_reuse=1
+sysctl -w net.ipv4.tcp_fin_timeout=15
+vi /etc/emqx/emqx.conf
+## Sets the maximum number of simultaneously existing ports for this system
+node.max_ports = 2097152
+  # node {
+  #   name = "emqx@10.13.194.69"
+  #   cookie = "emqxsecretcookie"
+  #   data_dir = "/var/lib/emqx"
+  #   max_ports = 2097152   # this line needed to be add
+  # }
+echo -e "## TCP Listener
+#listeners.tcp.$name.acceptors = 64
+#listeners.tcp.$name.max_connections = 1024000" >> /etc/emqx/emqx.conf
+
+systemctl restart emqx
+```
+***
 ## EMQX - Uninstall/Remove
 ```sh
 # ----------------- Complete Uninstall ------------
@@ -62,3 +120,4 @@ sudo systemctl daemon-reload
 sudo userdel emqx
 sudo groupdel emqx
 ```
+
