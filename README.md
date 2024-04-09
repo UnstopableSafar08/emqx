@@ -30,11 +30,11 @@ e.g.: emqx ctl admins passwd admin NewPassword#1234
 ```
 
 ### Check EMQX Web Dashboard
-Web Dashboard: http://IP_of_VM_Server:18083/ <br>
-`in my case: http://192.168.121.141:18083` <br>
-Default-login: <br>
-    Default-username: <b>admin</b> <br>
-    Default-password: <b>public</b><br>
+Web Dashboard: http://IP_of_VM_Server:18083/ <br/>
+`in my case: http://192.168.121.141:18083` <br/>
+Default-login: <br/>
+    Default-username: <b>admin</b> <br/>
+    Default-password: <b>public</b><br/>
 <br>
 ![Test Image 1](https://github.com/UnstopableSafar08/emqx/blob/main/Assets/1-login.png) 
 
