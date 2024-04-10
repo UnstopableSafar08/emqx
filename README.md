@@ -35,7 +35,7 @@ e.g.: emqx ctl admins passwd admin NewPassword#1234
 ***
 ## EMQX - Login Dashboard
 Web Dashboard: http://IP:18083/ <br>
-`sh In my Case  : http://192.168.121.141:18083` <br>
+`In my Case  : http://192.168.121.141:18083` <br>
 Default-login: <br>
     Default-username: admin <br>
     Default-password: public <br>
@@ -120,4 +120,10 @@ sudo systemctl daemon-reload
 sudo userdel emqx
 sudo groupdel emqx
 ```
+
+
+
+> [!TIP]
+>### Read More (Full Documentation): - ![Complete-EMQX-Documentation](https://github.com/UnstopableSafar08/emqx/blob/main/EMQX-by-sagarMalla.pdf) 
+
 
