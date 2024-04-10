@@ -428,8 +428,3 @@ echo -e "## TCP Listener
 #listeners.tcp.$name.max_connections = 1024000" >> /etc/emqx/emqx.conf
 
 systemctl restart emqx
-
-
-
-
-emqx ctl cluster join emqx@
