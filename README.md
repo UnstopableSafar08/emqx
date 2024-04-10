@@ -1,8 +1,18 @@
-# EMQX
+# MQTT
+MQTT stands for MQ Telemetry Transport. The protocol is a set of rules that defines how IoT devices can publish and subscribe to data over the Internet. MQTT is used for messaging and data exchange between IoT and industrial IoT (IIoT) devices, such as embedded devices, sensors, industrial PLCs, etc. The protocol is event driven and connects devices using the publish /subscribe (Pub/Sub) pattern. **The sender (Publisher) and the receiver (Subscriber)** communicate via Topics and are decoupled from each other. The connection between them is handled by the MQTT broker. The MQTT broker filters all incoming messages and distributes themcorrectly to the Subscribers. 
 
+- It requires minimal resources since it is lightweight and efficient <br>
+- Supports bi-directional messaging between device and cloud <br>
+- Can scale to millions of connected devices <br>
+- Supports reliable message delivery through 3 QoS levels <br>
+- Works well over unreliable networks <br>
+- Security enabled, so it works with TLS and common authentication protocols <br>
+***
+# EMQX
 EMQX is a cloud-native, MQTT-based, IoT messaging platform designed for high reliability and massive scale. EMQX is a tool in the Message Queue category of a tech stack. 
 EMQX is currently the most scalable MQTT broker for IoT applications. It processes millions of MQTT messages in a second with sub-millisecond latency and allows messaging among more than 100 million clients within a single cluster. EMQX is compliant with MQTT 5.0 and 3.x. It’s ideal for distributed IoT networks and can run on the cloud, Microsoft Azure, Amazon Web Services, and Google Cloud. The broker can implement MQTT over TLS/SSL and supports several authentication mechanisms like PSK, JWT, and X.509. Unlike Mosquitto, EMQX supports clustering via CLI, HTTP API, and a Dashboard.
-****
+
+***
 ## Architecture
 ![emqx-arch](https://github.com/UnstopableSafar08/emqx/blob/main/Assets/architecture_image.f5sZc1A2.png)
 
